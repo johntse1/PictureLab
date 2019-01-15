@@ -97,7 +97,65 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  public void negate()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(255-pixelObj.getRed());
+        pixelObj.setGreen(255-pixelObj.getGreen());
+        pixelObj.setBlue(255-pixelObj.getBlue());
+      }
+    }
+  }
+  public void grayscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        int sum = (pixelObj.getBlue()+ pixelObj.getGreen() + pixelObj.getRed()) / 3 ;
+        pixelObj.setRed(sum);
+        pixelObj.setGreen(sum);
+        pixelObj.setBlue(sum);
+      }
+    }
+  }
+  public void fixUnderwater()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        if(pixelObj.getBlue()>pixelObj.getGreen())
+        {
+          pixelObj.setBlue(8);
+          pixelObj.setGreen(100);
+          pixelObj.setRed(22);
+        }
+        else if(pixelObj.getGreen()>pixelObj.getBlue())
+        {
+          pixelObj.setGreen(0);
+        }
+      }
+    }
+  }
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -216,6 +274,7 @@ public class Picture extends SimplePicture
       }
     }
   }
+
   
   
   /* Main method for testing - each class in Java can have a main 
@@ -223,9 +282,9 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("water.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.fixUnderwater();
     beach.explore();
   }
   
