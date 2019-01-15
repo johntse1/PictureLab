@@ -37,15 +37,12 @@ public class PictureTester
     beach.grayscale();
     beach.explore();
   }
-  public static void testFixUnderwater()
-  {
+  public static void testFixUnderwater() {
     Picture beach = new Picture("water.jpg");
     beach.explore();
     beach.fixUnderwater();
     beach.explore();
   }
-
-  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -53,6 +50,20 @@ public class PictureTester
     caterpillar.explore();
     caterpillar.mirrorVertical();
     caterpillar.explore();
+  }
+  public static void testMirrorVerticalRightToLeft()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.mirrorVerticalRightToLeft();
+    beach.explore();
+  }
+  public static void testMirrorHorizontal()
+  {
+    Picture beach = new Picture("water.jpg");
+    beach.explore();
+    beach.mirrorHorizontal();
+    beach.explore();
   }
   
   /** Method to test mirrorTemple */
@@ -93,8 +104,10 @@ public class PictureTester
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
-    testFixUnderwater();
+    //testFixUnderwater();
     //testMirrorVertical();
+    //testMirrorVerticalRightToLeft();
+    testMirrorHorizontal();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
