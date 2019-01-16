@@ -229,15 +229,15 @@ public class Picture extends SimplePicture
     Pixel[][] pixels = this.getPixels2D();
     Pixel topPixel = null;
     Pixel bottomPixel = null;
-    int height = pixels.length;
-    for (int row = 0; row < height; row++)
+    for (int row = 0; row < pixels.length; row++)
     {
-      for (int col = 0; col < pixels[0].length; col++)
+      for(int width = 0; width < pixels.length;width++)
       {
-        topPixel = pixels[row][col];
-        bottomPixel = pixels[height - 1 - row][col];
-        topPixel.setColor(bottomPixel.getColor());
+        topPixel = pixels[width][row];
+        bottomPixel = pixels[row][width];
+        bottomPixel.setColor(topPixel.getColor());
       }
+
     }
 
   }
@@ -349,7 +349,7 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.mirrorHorizontalBotToTop();
+    beach.mirrorDiagonal();
     beach.explore();
   }
   
