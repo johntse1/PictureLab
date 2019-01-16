@@ -256,15 +256,36 @@ public class Picture extends SimplePicture
       // loop from 13 to just before the mirror point
       for (int col = 13; col < mirrorPoint; col++)
       {
-        
+        count++;
         leftPixel = pixels[row][col];      
         rightPixel = pixels[row]                       
                          [mirrorPoint - col + mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
       }
     }
+    System.out.println(count);
   }
-  
+  public void mirrorArms()
+  {
+
+      int mirrorPoint = 193;
+      Pixel leftPixel = null;
+      Pixel rightPixel = null;
+      int count = 0;
+      Pixel[][] pixels = this.getPixels2D();
+// loop through the rows
+      for (int row = 158; row <mirrorPoint; row++)
+      {
+// loop from 13 to just before the mirror point
+        for (int col = 103; col < 140; col++)
+        {
+          leftPixel = pixels[row][col];
+          rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
+          rightPixel.setColor(leftPixel.getColor());
+        }
+      }
+    }
+
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
@@ -272,8 +293,7 @@ public class Picture extends SimplePicture
     * @param startRow the start row to copy to
     * @param startCol the start col to copy to
     */
-  public void copy(Picture fromPic, 
-                 int startRow, int startCol)
+  public void copy(Picture fromPic, int startRow, int startCol)
   {
     Pixel fromPixel = null;
     Pixel toPixel = null;
@@ -349,8 +369,10 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.mirrorDiagonal();
+    beach.mirrorArms();
     beach.explore();
   }
   
 } // this } is the end of class Picture, put all new methods before this
+
+
